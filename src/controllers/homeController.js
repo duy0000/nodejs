@@ -17,10 +17,18 @@ let getabout = (req, res) => {
 let postUser = async (req, res) => {
   let message = await crudUserService.createUser(req.body);
   console.log(message);
-  return res.send("tet");
+  return res.send("tạo user thành công");
+};
+let getUser = async (req, res) => {
+  let data = await crudUserService.getUser();
+  console.log("lấy dữ liệu thành công");
+  return res.render("allUser.ejs", {
+    datatable: data,
+  });
 };
 module.exports = {
   gethome: getHome,
   getabout: getabout,
   postUser: postUser,
+  getUser: getUser,
 };

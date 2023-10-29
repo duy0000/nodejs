@@ -5,6 +5,7 @@ const { response } = require("express");
 const salt = bcrypt.genSaltSync(10);
 
 let createUser = async (data) => {
+  //taoj mowis usser
   return new Promise(async (resolve, reject) => {
     try {
       let hash = await hashpassword(data.password);
@@ -30,6 +31,18 @@ let hashpassword = async (password) => {
     }
   });
 };
+let getUser = () => {
+  //lay du lieu user
+  return new Promise((resolve, reject) => {
+    try {
+      let users = db.User.findAll({ raw: true });
+      resolve(users);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   createUser: createUser,
+  getUser: getUser,
 };
