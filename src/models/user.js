@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -13,13 +11,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  //id (Khóa chính): Mã định danh mỗi người dùng.
+  //user_image: Ảnh Đại Diện Người Dùng
+  // username: Tên đăng nhập của người dùng.
+  // email: Địa chỉ email của người dùng.
+  // password: Mật khẩu của người dùng (được mã hóa).
+  // user_type: Trường để xác định vai trò của người dùng (ví dụ, 1 cho người đọc, 2 cho tác giả).
+  User.init(
+    {
+      userName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      passWord: DataTypes.STRING,
+      userImage: DataTypes.STRING,
+      userType: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "User",
+    }
+  );
   return User;
 };
