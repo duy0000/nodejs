@@ -26,9 +26,36 @@ let getUser = async (req, res) => {
     datatable: data,
   });
 };
+let editUser = async (req, res) => {
+  let userId = req.query.id;
+  if (userId) {
+    let user = await crudUserService.getUserById(userId);
+    return res.render("editUser", { userData: user });
+    console.log(userData);
+  } else {
+    return res.send("Khong Timf Thaays id");
+  }
+};
+let putUser = async (req, res) => {
+  let data = req.body;
+  let allUpdateUser = await crudUserService.updateUser(data);
+  return res.render("allUser.ejs", {
+    datatable: allUpdateUser,
+  });
+};
+let deleteUser = async (req, res) => {
+  let id = req.query.id;
+  let allUser = await crudUserService.deleteUser(id);
+  return res.render("allUser.ejs", {
+    datatable: allUser,
+  });
+};
 module.exports = {
   gethome: getHome,
   getabout: getabout,
   postUser: postUser,
   getUser: getUser,
+  editUser: editUser,
+  putUser: putUser,
+  deleteUser: deleteUser,
 };
